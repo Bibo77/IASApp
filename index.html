@@ -58,7 +58,7 @@
       <li id="Question" data-sortby=4><a  id="Questions" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#emailPage" data-transition="slide" >Islamic Questions?</a></li>
       <li id="Event" data-sortby=4><a id="Events" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#EventsPage" data-transition="slide" >Upcoming Events</a></li>
       <li id="Game" data-sortby=4><a id="Games" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#gamePage" data-transition="slide" >The Game</a></li>
-      <li id="Suggestion" data-sortby=4><a id="Suggestions" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#SuggestionsPage" data-transition="slide" >Community Suggestions</a></li></ul>
+      <li id="Suggestion" data-sortby=4><a id="Suggestions" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#suggestionsPage" data-transition="slide" >Community Suggestions</a></li></ul>
       
       <br>
       <h4>Latest Community Announcement</h4>
@@ -85,6 +85,25 @@
   
 </div> 
 
+<div data-role="page" id="suggestionsPage" data-theme="b">
+  <div data-role="header" data-position="fixed" >
+      <a data-role="button" href="#" data-transition="slide" data-rel="back" data-icon="back">Back</a>
+      <h1>Community Suggestions</h1>
+      <a class="refresh" href="#" data-role="button" data-icon="refresh" data-iconpos="notext"></a>
+  </div>
+    
+  <div data-role="content">
+      <p>"Those who hearken to their Lord, and establish regular Prayer; who (conduct) their affairs by mutual Consultation; who spend out of what We bestow on them for Sustenance" (Qur'an, 42:38)</p>
+          <textarea id="detail" placeholder="Your Suggestion" required></textarea>
+          <input id="submitSuggestion" type="button" value="Submit"/>
+      </form>
+      <div id="suggs">
+      
+      </div>
+    </div>
+
+  
+</div> 
     
 <div data-role="page" id="gamePage" data-theme="b">
   <div data-role="header" >
@@ -203,6 +222,8 @@
     $(document).ready(function(){
        $yql = $("#yql");
         
+        
+        
         loadData(); 
        
         $.getJSON( "http://khaledyhaggag.appspot.com/events?callback=?",{'Channel':'IAS'}, function( json ) { 
@@ -224,7 +245,15 @@
             ul.append(li);
         });
         
-        
+        $('#submitSuggestion').click(function() {
+            var dd = $('#detail').val();  
+            $.ajax({
+                type: "POST",
+                url: "http://iasforyouth.appspot.com/suggestions",
+                xhrFields: { withCredentials: true},
+                data: { detail: dd}
+            });
+        });
         
         
         
@@ -270,7 +299,14 @@
             });
         });
         
-        
+         $('#Suggestions').click(function() {
+         $.ajax({
+                type: "POST",
+                url: "http://khaledyhaggag.appspot.com/events",
+                xhrFields: { withCredentials: true},
+                data: { Channel: "IAS", Status: "Suggestion" }
+            });
+        });
     }); 
     
     
@@ -373,11 +409,11 @@
              $("#generalNum").html(gCount); 
        });
         
-        $.getJSON( "http://iasforyouth.appspot.com/topScores?callback=?", function( json ) { 
-            $("#scores").empty();
+        $.getJSON( "http://iasforyouth.appspot.com/suggestions?callback=?", function( json ) { 
+            $("#suggs").empty();
             
-            json.forEach(function(sc) {
-                $("#scores").append("<li>" + sc.Name  + ": " + sc.Score + "</li>");
+            json.forEach(function(s) {
+                $("#suggs").append("<br><input id='' type='button' value='Like'/><hr><textarea readonly>"+ s.Detail +"</textarea><br>");
             });
         });
                   
