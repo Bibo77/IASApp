@@ -417,7 +417,13 @@
             });
         });
                   
-                  
+        $.getJSON( "http://iasforyouth.appspot.com/topScores?callback=?", function( json ) { 
+            $("#scores").empty();
+            
+            json.forEach(function(sc) {
+                $("#scores").append("<li>" + sc.Name  + ": " + sc.Score + "</li>");
+            });
+        });          
     }
    
     
