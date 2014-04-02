@@ -57,7 +57,9 @@
       <li id="Prayer" data-sortby=4><a  id="Prayers" class="ui-btn ui-icon-arrow-r ui-btn-icon-right"  data-role="button" href="#prayerPage" data-transition="slide" >Prayer Timings</a></li>
       <li id="Question" data-sortby=4><a  id="Questions" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#emailPage" data-transition="slide" >Islamic Questions?</a></li>
       <li id="Event" data-sortby=4><a id="Events" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#EventsPage" data-transition="slide" >Upcoming Events</a></li>
-      <li id="Game" data-sortby=4><a id="Games" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#gamePage" data-transition="slide" >The Game</a></li></ul>
+      <li id="Game" data-sortby=4><a id="Games" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#gamePage" data-transition="slide" >The Game</a></li>
+      <li id="Suggestion" data-sortby=4><a id="Suggestions" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" data-role="button" href="#SuggestionsPage" data-transition="slide" >Community Suggestions</a></li></ul>
+      
       <br>
       <h4>Latest Community Announcement</h4>
       <div id="announcements">
@@ -196,25 +198,7 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" charset="utf-8">
     var $yql;
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        // Empty
-        document.getElementById('tb1').value = 'device ready';
-    }
-    function alertDismissed() {
-    // do something
-        
-    }
-   
-    navigator.notification.alert(
-                        'Your internet connection is not stable, this application may not function properly.',  // message
-                        alertDismissed,         // callback
-                        'Alert',            // title
-                        'Ok'                  // buttonName
-                    );
+    
     
     $(document).ready(function(){
        $yql = $("#yql");
