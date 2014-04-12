@@ -88,7 +88,7 @@
 <div data-role="page" id="suggestionsPage" data-theme="b">
   <div data-role="header" data-position="fixed" >
       <a data-role="button" href="#" data-transition="slide" data-rel="back" data-icon="back">Back</a>
-      <h1>Community Suggestions</h1>
+      <h1>Suggestions</h1>
       <a class="refresh" href="#" data-role="button" data-icon="refresh" data-iconpos="notext"></a>
   </div>
     
@@ -96,6 +96,8 @@
       <p>"Those who hearken to their Lord, and establish regular Prayer; who (conduct) their affairs by mutual Consultation; who spend out of what We bestow on them for Sustenance" (Qur'an, 42:38)</p>
           <textarea id="detail" placeholder="Your Suggestion" required></textarea>
           <input id="submitSuggestion" type="button" value="Submit"/>
+      <p>Click on another suggestion to like it.</p>
+      <hr>
       </form>
       <div id="suggs">
       
@@ -118,7 +120,9 @@
       <ol id="scores">
           
       </ol>
-      <input type="button" id="startG" value="Start A New Game"/>
+      <div data-role="controlgroup" data-type="horizontal">
+        <input type="button" id="startG" value="Start Game"/><input type="button" id="pauseGame" value="Pause"/>
+      </div>
       <p>Rules: Tap to jump, red blocks are sins, green blocks are good deeds. (Landscape mode is recommended).</p>
         <div id="container"></div>
         <input type="text" value="" id="timeMeter" />
@@ -413,7 +417,7 @@
             $("#suggs").empty();
             
             json.forEach(function(s) {
-                $("#suggs").append("<br><input id='' type='button' value='Like'/><hr><textarea readonly>"+ s.Detail +"</textarea><br>");
+                $("#suggs").append("<br><input type='button' value='"+s.Detail+"' onClick='postLike(this)'/><br>");
             });
         });
                   
@@ -428,7 +432,15 @@
    
     
 
-    
+    function postLike(ob){
+        alert("Liked"); 
+         $.ajax({
+                type: "POST",
+                url: "http://iasforyouth.appspot.com/suggestions",
+                xhrFields: { withCredentials: true},
+                data: { detail: ob.value}
+            });
+    }
     
     
     function getMonth(num){
@@ -461,11 +473,21 @@
     //Everything with the game
     
     $(document).ready(function(){
+        
         $('#gameBack').click(function() {
-           collie.Renderer.stop(); 
+           endGame(); 
          });
+        
+        $('#pauseGame').click(function() {
+           endGame(); 
+         });
+        
     }); 
     
+    function endGame(){
+        //oTimer.stop();
+        collie.Renderer.stop(); 
+    }
     
     function postScore(s){
         var person = prompt("Enter your name to post your high score of: " + s + ".","Anonymous");
@@ -480,10 +502,15 @@
         }       
     }
     
-    
+    var started = false; 
     
     function startGame(){
+        if(started)
+            collie.Renderer.start();
+        else{
         
+            started = true; 
+            
         var screenWidth = 600;
         var screenHeight = 250;
         
@@ -694,6 +721,7 @@
 		  	collie.Renderer.addLayer(layer);
 		  	collie.Renderer.load(document.getElementById("container"));
 		  	collie.Renderer.start();
+        }
     }
     
     $('#startG').click(function() {
