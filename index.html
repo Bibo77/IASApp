@@ -226,7 +226,21 @@
     $(document).ready(function(){
        $yql = $("#yql");
         
+        localStorage.setItem("fajrEast","4:00");
+        localStorage.setItem("duhrEast","1:30");
+        localStorage.setItem("asrEast","7:00");
+        localStorage.setItem("maghribEast","8:57");
+        localStorage.setItem("ishaEast","10:30");
+        localStorage.setItem("jumma1East","1:40");
+        localStorage.setItem("jumma2East","2:35");
         
+        localStorage.setItem("fajrWest","4:15");
+        localStorage.setItem("duhrWest","1:45");
+        localStorage.setItem("asrWest","6:45");
+        localStorage.setItem("maghribWest","Sunset");
+        localStorage.setItem("ishaWest","10:30");
+        localStorage.setItem("jumma1West","1:35");
+        localStorage.setItem("jumma2West","2:35");
          
         loadData(); 
        
@@ -317,22 +331,24 @@
     
     function loadData(){
         
-        var fajrEast = "6:30am";
-        var duhrEast = "1:30pm";
-        var asrEast= "5:30pm"; 
-        var maghribEast = "Sunset";
-        var ishaEast = "8:45pm"; 
-        var jumma1East = "1:00pm"; 
-        var jumma2East = "2:15pm";
+       
+        
+        var fajrEast =  localStorage.getItem("fajrEast"); 
+        var duhrEast =  localStorage.getItem("duhrEast"); 
+        var asrEast=  localStorage.getItem("asrEast"); 
+        var maghribEast =  localStorage.getItem("maghribEast"); 
+        var ishaEast =  localStorage.getItem("ishaEast");  
+        var jumma1East =  localStorage.getItem("jumma1East");  
+        var jumma2East =  localStorage.getItem("jumma2East"); 
                     
                 
-        var fajrWest = "6:45am";
-        var duhrWest = "1:45pm";
-        var asrWest = "5:15pm";
-        var maghribWest = "Sunset";
-        var ishaWest = "8:45pm";
-        var jumma1West = "1:40pm";
-        var jumma2West = "2:30pm";
+        var fajrWest =  localStorage.getItem("fajrWest"); 
+        var duhrWest =  localStorage.getItem("duhrWest"); 
+        var asrWest =  localStorage.getItem("asrWest"); 
+        var maghribWest =  localStorage.getItem("maghribWest"); 
+        var ishaWest =  localStorage.getItem("ishaWest"); 
+        var jumma1West =  localStorage.getItem("jumma1West"); 
+        var jumma2West =  localStorage.getItem("jumma2West"); 
         
         var duhrCampus = "NA";
         var asrCampus = "NA"; 
