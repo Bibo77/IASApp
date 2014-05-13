@@ -227,7 +227,7 @@
        $yql = $("#yql");
         
         
-        
+         
         loadData(); 
        
         $.getJSON( "http://khaledyhaggag.appspot.com/events?callback=?",{'Channel':'IAS'}, function( json ) { 
@@ -417,7 +417,7 @@
             $("#suggs").empty();
             
             json.forEach(function(s) {
-                $("#suggs").append("<br><input type='button' value='"+s.Detail+"' onClick='postLike(this)'/><br>");
+                $("#suggs").append("<br><button type='button' onClick='postLike(this)'>"+s.Detail+"</button><br>");
             });
         });
                   
@@ -433,12 +433,12 @@
     
 
     function postLike(ob){
-        alert("Liked"); 
+        alert("Liked");
          $.ajax({
                 type: "POST",
                 url: "http://iasforyouth.appspot.com/suggestions",
                 xhrFields: { withCredentials: true},
-                data: { detail: ob.value}
+                data: { detail: ob.innerHTML}
             });
     }
     
