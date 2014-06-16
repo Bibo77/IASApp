@@ -47,16 +47,7 @@
         <label id="jumma2"></label>
       </div>
       
-      <div data-role="collapsible" data-collapsed="true">
-        <h1 id="westPrayers" >West-Side Masjid</h1>
-        <label id="fajrWest"></label>
-        <label id="duhrWest"></label>
-        <label id="asrWest"></label>
-        <label id="maghribWest"></label>
-        <label id="ishaWest"></label><br>
-        <label id="jumma1West"></label>
-        <label id="jumma2West"></label>
-      </div>
+     
         
       <div data-role="collapsible" data-collapsed="true">
         <h1 id="campusPrayers" >On-Campus Prayer Room</h1>
@@ -110,12 +101,7 @@
        
         
         
-        $.getJSON( "http://iasforyouth.appspot.com/prayerTimings?callback=?", function(json) {
-                    json.forEach(function(s) {
-                        alert(s); 
-                    });
-                }
-            );
+       
         
         localStorage.setItem("fajrEast","4:00");
         localStorage.setItem("duhrEast","1:30");
@@ -125,13 +111,7 @@
         localStorage.setItem("jumma1East","1:40");
         localStorage.setItem("jumma2East","2:35");
         
-        localStorage.setItem("fajrWest","4:15");
-        localStorage.setItem("duhrWest","1:45");
-        localStorage.setItem("asrWest","6:45");
-        localStorage.setItem("maghribWest","Sunset");
-        localStorage.setItem("ishaWest","10:30");
-        localStorage.setItem("jumma1West","1:35");
-        localStorage.setItem("jumma2West","2:35");
+        
          
         loadData(); 
        
@@ -153,13 +133,7 @@
         var jumma2East =  localStorage.getItem("jumma2East"); 
                     
                 
-        var fajrWest =  localStorage.getItem("fajrWest"); 
-        var duhrWest =  localStorage.getItem("duhrWest"); 
-        var asrWest =  localStorage.getItem("asrWest"); 
-        var maghribWest =  localStorage.getItem("maghribWest"); 
-        var ishaWest =  localStorage.getItem("ishaWest"); 
-        var jumma1West =  localStorage.getItem("jumma1West"); 
-        var jumma2West =  localStorage.getItem("jumma2West"); 
+       
         
         var duhrCampus = "NA";
         var asrCampus = "NA"; 
@@ -175,13 +149,6 @@
         $('#jumma1').html("Jumma 1:  "+jumma1East);
         $('#jumma2').html("Jumma 2:  "+jumma2East);
 
-        $('#fajrWest').html("Fajr:  "+"<b>"+fajrWest+"</b>");
-        $('#duhrWest').html("Duhr:  "+duhrWest);
-        $('#asrWest').html("Asr:  "+asrWest);
-        $('#maghribWest').html("Maghrib:  "+maghribWest);
-        $('#ishaWest').html("Isha:  "+"<b>"+ishaWest+"</b>");
-        $('#jumma1West').html("Jumma 1:  "+jumma1West);
-        $('#jumma2West').html("Jumma 2:  "+jumma2West);
         
         //$('#duhrCampus').html("Duhr:  "+duhrCampus);
         //$('#asrCampus').html("Asr:  "+asrCampus);
