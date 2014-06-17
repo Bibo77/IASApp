@@ -10,6 +10,21 @@
     <meta name="Description" content="" />
     <meta name="Keywords"  content="" />
 </head>
+    <style>
+    /**
+* Styles to fix the new iOS 7 transparent status bar
+*/
+#ios7statusbar {
+    width:100%;
+    height:20px;
+    background-color:white;
+    position:fixed;
+    z-index:10000;
+}
+.ios7 .ui-page, .ios7 .ui-header, .ios7 .ui-pane {
+    margin-top: 20px;
+}
+    </style>
 <body>
    
 
@@ -222,6 +237,10 @@
 <script type="text/javascript" charset="utf-8">
     var $yql;
     
+    if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+        $("body").addClass("ios7");
+        $("body").append('');
+    }
     
     $(document).ready(function(){
        $yql = $("#yql");
